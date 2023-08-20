@@ -85,15 +85,15 @@ def DeleteItemObj(_map, item_id):
 
 
 def show_edit_window(item, column, node_type, data_obj):
-    edit_window = Toplevel(root)  # 添加一个标签用于显示当前选中的值
+    edit_window = Toplevel(root) 
 
     # 获取root窗口的位置
     root_x = root.winfo_rootx()
     root_y = root.winfo_rooty()
 
     # 计算弹窗窗口在root窗口中的位置
-    x = root_x  # + (root_width) // 2
-    y = root_y  # + (root_height) // 2
+    x = root_x 
+    y = root_y 
 
     # 设置弹窗窗口的位置
     edit_window.geometry(f"+{x}+{y}")
@@ -101,15 +101,11 @@ def show_edit_window(item, column, node_type, data_obj):
     label.grid(row=0, column=0, sticky=W, pady=5)
 
     # 添加一个Entry控件用于接收修改值
-    # entry = Entry(edit_window)
     entry = Text(edit_window, wrap="word")
-    # entry.insert(0, data_obj['Info'] if node_type == "Value" else data_obj['name'])
     entry.insert(1.0, data_obj['Info'] if node_type == "Value" else data_obj['name'])
     entry.grid(row=1, column=0, sticky="ew", padx=5)
 
     def save_data():
-        # 获取用户输入的修改值
-        # new_value = entry.get()
         new_value = entry.get(1.0, END).replace('\n', '')
         # 更新treeview中对应节点的值
         if node_type == "Key":
@@ -136,29 +132,26 @@ def show_add_window(item, index, data_obj):
     main_width = root.winfo_width()
     main_height = root.winfo_height()
 
-    # 获取屏幕的宽度和高度
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
+    # 获取root窗口的位置
+    root_x = root.winfo_rootx()
+    root_y = root.winfo_rooty()
 
-    # 计算窗口在屏幕上的位置
-    x = (screen_width - main_width) // 2
-    y = (screen_height - main_height) // 2
+    # 计算弹窗窗口在root窗口中的位置
+    x = root_x 
+    y = root_y 
 
-    # 设置窗口的位置
+    # 设置弹窗窗口的位置
     edit_window.geometry(f"+{x}+{y}")
 
     label = Label(edit_window, text="添加节点名称：")
     label.grid(row=0, column=0, sticky=W, pady=5)
 
     # 添加一个Entry控件用于接收修改值,长度占满窗口
-    # entry = Entry(edit_window)
     entry = Text(edit_window, wrap="word")
-    # entry.pack()
     entry.grid(row=1, column=0, sticky="ew", padx=5)
 
     def save_data():
         # 获取用户输入的修改值
-        # new_value = entry.get()
         new_value = entry.get(1.0, END).replace('\n', '')
         # 判断为空
         if new_value == '':
@@ -190,9 +183,7 @@ def popup(event):
 
 def expand_or_collapse_all_nodes():
     global tree
-    # 获取所有的节点
     all_nodes = tree.get_children()
-
     # 逐个展开节点
     for node in all_nodes:
         obj = tree.item(node)
@@ -203,20 +194,14 @@ def expand_or_collapse_all_nodes():
 
 
 def export_lps_file():
-    # 获取要导出的数据
     data = LpsListToLpsStr(data_map)
-
-    # 弹出文件对话框，选择保存的文件路径
     file_path = filedialog.asksaveasfilename(defaultextension=".lps",
                                              filetypes=[("Lps Files", "*.lps"), ("All Files", "*.*")])
-
-    # 检查是否选择了文件路径
     export_func(file_path, data)
 
 
 def export_json_file():
     data = LpsListToJsonStr(data_map)
-    # 弹出文件对话框，选择保存的文件路径
     file_path = filedialog.asksaveasfilename(defaultextension=".json",
                                              filetypes=[("Json Files", "*.json"), ("All Files", "*.*")])
     export_func(file_path, data)
@@ -266,20 +251,20 @@ def input_lps_file():
             messagebox.showerror("错误", "导入文件时发生错误:" + str(e))
 
 
-# 设置窗口大小
+
 root = Tk()
 root.geometry("500x700")
 root.title("JSON Editor")
-# 创建treeview,使用grid设置其在界面中的位置,宽度占满界面
+
 tree = Treeview(root, height=20, )
 tree.grid(row=0, column=0, columnspan=5, sticky=NSEW)
-# 设置treeview的滚动条
+
 scrollBar = Scrollbar(root, orient="vertical", command=tree.yview)
 scrollBar.grid(row=0, column=5, sticky=NS)
-# 设置treeview的滚动条
+
 scrollBar = Scrollbar(root, orient="horizontal", command=tree.xview)
 scrollBar.grid(row=1, column=0, columnspan=5, sticky=EW)
-# 在下一行加入5个按钮，分别为读取LPS文件、读取JSON文件、导出LPS文件、导出JSON文件、折叠/展开
+
 Button(root, text="读取LPS文件", command=input_lps_file).grid(row=2, column=0)
 Button(root, text="读取JSON文件", command=import_json_file).grid(row=2, column=1, )
 Button(root, text="导出LPS文件", command=export_lps_file).grid(row=2, column=2, )
@@ -287,17 +272,17 @@ Button(root, text="导出JSON文件", command=export_json_file).grid(row=2, colu
 Button(root, text="折叠/展开", command=expand_or_collapse_all_nodes).grid(row=2, column=4, )
 
 
-# 设置treeview的宽度随窗口的变化而变化
+
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
 
-# 设置treeview的列
+
 tree["columns"] = "Value"
 tree.column("#0", width=150, minwidth=150)
 tree.column("Value", width=150, minwidth=150)
 tree.heading("#0", text="Key", anchor="w")
 tree.heading("Value", text="Value", anchor="w")
-# 创建右键菜单
+
 menu = Menu(root, tearoff=0)
 menu.add_command(label="修改")
 menu.add_command(label="添加")

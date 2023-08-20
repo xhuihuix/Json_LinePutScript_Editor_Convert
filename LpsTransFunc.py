@@ -77,11 +77,6 @@ class LpsList(list):
         return result
 
 
-# class NewLpsObj():
-#
-#     def __init__(self, **kw):
-#         self.
-
 def dLpsEachLineParse(dict_obj: dict,
                       line_data: str,
                       line_index: int,
@@ -100,22 +95,6 @@ def dLpsEachLineParse(dict_obj: dict,
     else:
         dict_obj[str(depth - 1)] = {"name": first_data[:first_data.find("#")], "Info": first_data[first_data.find("#") + 1:]}
         dLpsEachLineParse(dict_obj, second_data, line_index, depth + 1)
-    # if first_data.find("#") != -1:
-    #     name = first_data[:first_data.find("#")]
-    #     key = first_data[first_data.find("#") + 1:]
-    #     if depth == 0:
-    #         dict_obj['Line%d' % line_index] = dict()
-    #
-    #         dict_obj['Line%d' % line_index][name] = key
-    #         dLpsEachLineParse(dict_obj['Line%d' % line_index], second_data, line_index, depth + 1)
-    #     else:
-    #         dict_obj[name] = key
-    #         dLpsEachLineParse(dict_obj, second_data, line_index, depth + 1)
-    # else:
-    #     if dict_obj.get(first_data):
-    #         print("警告，重复的key值：%s， 将会被覆盖" % first_data)
-    #     dict_obj[first_data] = dict()
-    #     dLpsEachLineParse(dict_obj[first_data], second_data, line_index, depth + 1)
 
 
 def LpsListLineToLpsStr(lps_dict: dict, depth: int = 0):
