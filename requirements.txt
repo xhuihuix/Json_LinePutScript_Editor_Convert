@@ -1,0 +1,11 @@
+altgraph==0.17.3
+importlib-metadata==6.7.0
+numpy==1.21.6
+opencv-python==4.8.0.76
+pefile==2023.2.7
+Pillow==9.5.0
+pyinstaller==5.13.0
+pyinstaller-hooks-contrib==2023.7
+pywin32-ctypes==0.2.2
+typing_extensions==4.7.1
+zipp==3.15.0
