@@ -36,16 +36,16 @@
 
 - 读取、保存JSON、LPS格式文件（不过多说明）
 
-  ![image-20230821011813895](C:\Users\jihongbo\AppData\Roaming\Typora\typora-user-images\image-20230821011813895.png)
+  ![导出](README.assets/导出-16925537936022.png)
 
 - 右键修改键、值数据
 
-![修改](D:\MyData\Desktop\Json_LinePutScript_Editor_Convert\Json_LinePutScript_Editor_Convert\README.assets\修改.gif)
+![修改](README.assets/修改.gif)
 
 - 右键新建键值（限制在第一层创建）
 
-![添加](D:\MyData\Desktop\Json_LinePutScript_Editor_Convert\Json_LinePutScript_Editor_Convert\README.assets\添加.gif)
+![添加](README.assets/添加.gif)
 
 - 右键删除节点（删除子节点/删除父节点以及子节点）
 
-![删除](D:\MyData\Desktop\Json_LinePutScript_Editor_Convert\Json_LinePutScript_Editor_Convert\README.assets\删除.gif)
+![删除](README.assets/删除.gif)
